@@ -1,12 +1,48 @@
 #TESTING
-from config import Test, Dato, Persona
+from config import *
+from utils.clases import *
+biblio = Biblioteca()
 
-Test()
+def menu():
+    print("1-AGREGAR LIBRO",
+              "2-LISTAR LIBROS",
+              "3-PRESTAR LIBRO",
+              "4-DEVOLVER LIBRO",
+              "FILTRAR ANTIGUOS")
+    x = int(input())
+    return x
 
-dato = Dato()
-dato.nombre = "Nico"
-print(dato.nombre)
 
+while True:
+   
 
-persona1 = Persona("NICOLAS")
-persona1.saludo()
+    x = menu()
+    if x == 1:
+        print("Nombre del libro")
+        nom = input()
+
+        print("Nombre del autor")
+        autor = input()
+        
+        print("Genero del libro")
+        genero = input()
+
+        print("Año de publicación")
+        año = input()
+        
+        libro = Libro(nom, autor, genero, año)
+        biblio.agregarLibro(libro)
+    info = libro.mostrarInfo()
+    print(info)
+
+    
+    if x == 2:
+        lista = biblio.listarLibros()
+        for elemento in lista:
+            print(elemento.mostrarInfo())
+
+    if x == 3:
+        print("Ingresar el titulo que queres prestar")
+        titulo = input()
+        biblio.prestarPorTitulo(titulo)
+        

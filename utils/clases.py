@@ -1,22 +1,27 @@
 #CLASES
 
-class libro:
+class Libro:
 
     #---------------INFO---------------------
-    def __init__(self, name):
+    def __init__(self, name, autor, genero, year):
         self.name = name
-
-    def getAutor(self,autor):
         self.autor = autor
-    
-    def getGenero(self,genero):
         self.genero = genero
+        self.year_publicacion = int(year)
     
-    def getYear(self, year):
-        self.year_publicacion = year
+        self.disponible = True
+
+    def getAutor(self):
+        return self.autor
     
-    def getDisponible(self, disponible):
-        self.disponible = disponible
+    def getGenero(self):
+        return self.genero
+    
+    def getYear(self):
+        return self.year_publicacion
+    
+    def getDisponible(self):
+        return self.disponible 
     #---------------------------------------------
 
     def prestar(self):
@@ -28,7 +33,7 @@ class libro:
             self.disponible = True
     
     def esAntiguo(self):
-        if 2025 -self.year_publicacion > 20:
+        if 2025 - self.year_publicacion > 20:
             return True
     
     def mostrarInfo(self):
@@ -38,7 +43,7 @@ class libro:
 
 class Biblioteca:
     def __init__(self):
-        self.listaLibros = {}
+        self.listaLibros = []
     
     def agregarLibro(self, libro):
         self.listaLibros.append(libro)
@@ -47,11 +52,11 @@ class Biblioteca:
         return self.listaLibros
     
     def prestarPorTitulo(self, titulo):
-        for i in range(self.listaLibros):
-            if self.listaLibros[i-1][0].lower() == titulo.lower():
-                return True
+        for i in range(len(self.listaLibros)):
+            if self.listaLibros[i].mostrarInfo()[0].lower() == titulo.lower():
+                self.listaLibros[i].prestar()
     
     def devolverPorTitulo(self, titulo):
-        for i in range(self.listaLibros):
-            if self.listaLibros[i-1][0].lower() == titulo.lower():
-                return True
+        for i in range(len(self.listaLibros)):
+            if self.listaLibros[i].mostrarInfo()[0].lower() == titulo.lower():
+                self.listaLibros[i].devolver()
