@@ -44,7 +44,7 @@ def a_l(): #agrgar_libros()
     entrada_año = tk.Entry(subventana)
     entrada_año.place(relx=0.5, rely=0.75, anchor= "center")
 #---------------------------------------------#
-    def g():
+    def g(): #guadar
         nombre = entrada_nombre.get()
         genero = entrada_genero.get()
         autor = entrada_autor.get()
@@ -52,7 +52,7 @@ def a_l(): #agrgar_libros()
         libro = Libro(nombre, genero, autor, año)
         Bibliotec.agregarLibro(libro)
 
-
+        print("libro AGREFAD")
     b_g = tk.Button(subventana, text= ("Guardar"), width= 8, height= 2, command= g)
     b_g.place(relx=0.5, rely=0.9, anchor= "center")
 
@@ -91,8 +91,21 @@ boton.place(relx=0.5, rely=0.5, anchor= "center")
 #------------------ Boton "prestar_libros" ------------------#
 def p_l(): #prestar_libros
     subventana = tk.Toplevel(ventana)
-    subventana.title("Ver Situaciones")
-    subventana.geometry("400x300")
+    subventana.title("Prestar Libro")
+    subventana.geometry("400x400")
+#---------------------------------------------# 
+    etiqueta_t = tk.Label(subventana, text = "Ingresa El Titulo: ")
+    etiqueta_t.place(relx=0.5, rely=0.4, anchor= "center")
+    entrada_t = tk.Entry(subventana)
+    entrada_t.place(relx=0.5, rely=0.45, anchor= "center")
+#---------------------------------------------# 
+    def p(): #prestar
+        t = entrada_t.get() #titulo
+        Bibliotec.prestarPorTitulo(t)
+        print("libro guardado")
+
+    b_g = tk.Button(subventana, text= ("Guardar"), width= 8, height= 2, command= p)
+    b_g.place(relx=0.5, rely=0.9, anchor= "center")
 
 boton = tk.Button(ventana, text= ("Prestar Libros"), width= 30, height= 5, command = p_l)
 boton.place(relx=0.5, rely=0.7, anchor= "center")
@@ -102,8 +115,21 @@ boton.place(relx=0.5, rely=0.7, anchor= "center")
 #------------------ Boton "devoler_libros" ------------------#
 def d_l(): #devolver_libros
     subventana = tk.Toplevel(ventana)
-    subventana.title("Ver Situaciones")
-    subventana.geometry("400x300")
+    subventana.title("Devolver Libro")
+    subventana.geometry("400x400")
+#---------------------------------------------# 
+    etiqueta_t = tk.Label(subventana, text = "Ingresa El Titulo: ")
+    etiqueta_t.place(relx=0.5, rely=0.4, anchor= "center")
+    entrada_t = tk.Entry(subventana)
+    entrada_t.place(relx=0.5, rely=0.45, anchor= "center")
+#---------------------------------------------# 
+    def d(): #devolver
+        t = entrada_t.get() #titulo
+        Bibliotec.devolverPorTitulo(t)
+        print("libro devolvido")
+
+    b_g = tk.Button(subventana, text= ("Guardar"), width= 8, height= 2, command= d)
+    b_g.place(relx=0.5, rely=0.9, anchor= "center")
 
 boton = tk.Button(ventana, text= ("Devolver Libros"), width= 30, height= 5, command = d_l)
 boton.place(relx=0.5, rely=0.9, anchor= "center")
