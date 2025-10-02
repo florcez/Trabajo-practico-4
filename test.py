@@ -8,7 +8,7 @@ def menu():
               "2-LISTAR LIBROS",
               "3-PRESTAR LIBRO",
               "4-DEVOLVER LIBRO",
-              "FILTRAR ANTIGUOS")
+              "5-FILTRAR ANTIGUOS")
     x = int(input())
     return x
 
@@ -32,8 +32,7 @@ while True:
         
         libro = Libro(nom, autor, genero, año)
         biblio.agregarLibro(libro)
-    info = libro.mostrarInfo()
-    print(info)
+   
 
     
     if x == 2:
@@ -45,4 +44,13 @@ while True:
         print("Ingresar el titulo que queres prestar")
         titulo = input()
         biblio.prestarPorTitulo(titulo)
-        
+    if x == 4:
+        print("Ingresar el titulo que queres devolver")
+        titulo = input()
+        biblio.devolverPorTitulo(titulo)
+    if x == 5:
+        print("Filtrar antiguos")
+        antiguo = biblio.filtrarAntiguo()
+
+        for elem in antiguo:
+            print(elem.mostrarInfo())
