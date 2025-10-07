@@ -58,11 +58,22 @@ class Biblioteca:
         for i in range(len(self.listaLibros)):
             td = []
             td.append(self.listaLibros[i].mostrarInfo()[0])
-            td.append(self.listaLibros[i].mostrarInfo()[4])
+            if self.listaLibros[i].mostrarInfo()[4] == True:
+                td.append("Disponible")
+            else:
+                td.append("No disponible")
+
             tituloDispo.append(td)
         return tituloDispo
 
-
+    def buscarLibro(self,titulo):
+        for i in range(len(self.listaLibros)):   #repite por la cantidad de libros que hay en la lista
+            if self.listaLibros[i].mostrarInfo()[0].lower() == titulo.lower():
+                name = self.listaLibros[i].mostrarInfo()[0]
+                autor = self.listaLibros[i].mostrarInfo()[1]
+                genero = self.listaLibros[i].mostrarInfo()[2]
+                año = self.listaLibros[i].mostrarInfo()[3]
+            return name, autor, genero, año
 
     def prestarPorTitulo(self, titulo):
         for i in range(len(self.listaLibros)):   #repite por la cantidad de libros que hay en la lista
