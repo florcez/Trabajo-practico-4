@@ -9,6 +9,7 @@ Bibliotec = Biblioteca()
 ventana = tk.Tk()
 ventana.title("Sistema de Gestión de Biblioteca")
 ventana.geometry("400x700")
+ventana.resizable(0,0)
 #---------------------------------------------#
 
 #------------------ Boton "agrgar_libros" ------------------#
@@ -52,13 +53,14 @@ def a_l(): #agrgar_libros()
             año = int(entrada_año.get())
         except ValueError:
             messagebox.showwarning("ValueError", "El valor debe ser númerico")
-
         
     
         libro = Libro(nombre, genero, autor, año)
         Bibliotec.agregarLibro(libro)
 
-        print(nombre, genero, autor, año)
+        messagebox.showwarning("Exito", "El libro ha sido guardado")
+
+
     b_g = tk.Button(subventana, text= ("Guardar"), width= 8, height= 2, command= g)
     b_g.place(relx=0.5, rely=0.9, anchor= "center")
 
@@ -74,9 +76,9 @@ def v_l(): #ver_libros()
     subventana.geometry("400x400")
 
     titulodispo = Bibliotec.titulodispo()
-
-    listbox = tk.Listbox()
-    listbox.insert(subventana,0, titulodispo)
+    print(titulodispo)
+    listbox = tk.Listbox(subventana)
+    listbox.insert(0, *titulodispo)
     listbox.place(relx = 0.5, rely = 0.5, anchor= "center")
 boton = tk.Button(ventana, text= ("Ver Libros"), width= 30, height= 5, command = v_l)
 boton.place(relx=0.5, rely=0.3, anchor= "center")
@@ -88,6 +90,11 @@ def b_l(): #buscar_libros
     subventana = tk.Toplevel(ventana)
     subventana.title("Agregar Notas")
     subventana.geometry("400x300")
+
+    etiqueta_n = tk.Label(subventana, text = "Nombre del libro")
+    etiqueta_n.place(relx=0.5, rely=0.2, anchor= "center")
+    entrada_n = tk.Entry(subventana)
+    entrada_n.place(relx=0.5, rely=0.25, anchor= "center")
 
 boton = tk.Button(ventana, text= ("Buscar Libros"), width= 30, height= 5, command = b_l)
 boton.place(relx=0.5, rely=0.5, anchor= "center")
