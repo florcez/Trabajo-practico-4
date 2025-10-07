@@ -11,7 +11,7 @@ class Libro:   #define la clase libro
     
         self.disponible = True    #define que está disponible
 
-    def getAutor(self):
+    def getAutor(self): 
         return self.autor
     
     def getGenero(self):
@@ -50,10 +50,10 @@ class Biblioteca:
     def agregarLibro(self, libro):
         self.listaLibros.append(libro)   #agrega un libro a la lista
     
-    def listarLibros(self):
+    def listarLibros(self): 
         return self.listaLibros   
     
-    def titulodispo(self):
+    def titulodispo(self):   #une en una lista el titulo y la disponibilidad del libro
         tituloDispo = []
         for i in range(len(self.listaLibros)):
             td = []
@@ -73,7 +73,7 @@ class Biblioteca:
                 autor = self.listaLibros[i].mostrarInfo()[1]
                 genero = self.listaLibros[i].mostrarInfo()[2]
                 año = self.listaLibros[i].mostrarInfo()[3]
-            return name, autor, genero, año
+            return name, autor, genero, año    #devuelve las variables
 
     def prestarPorTitulo(self, titulo):
         for i in range(len(self.listaLibros)):   #repite por la cantidad de libros que hay en la lista
@@ -86,9 +86,12 @@ class Biblioteca:
             if self.listaLibros[i].mostrarInfo()[0].lower() == titulo.lower():
              #si el nombre del elemento es = al titulo ingresado
                 self.listaLibros[i].devolver()   #devuelve  ese elemento
+
+
+    
     def filtrarAntiguo(self):
         antiguo = []
-        for i in range(len(self.listaLibros)):
-            if self.listaLibros[i].esAntiguo() == True:
-                antiguo.append(self.listaLibros[i])
+        for i in range(len(self.listaLibros)):   
+            if self.listaLibros[i].esAntiguo() == True:   #verifica si es antiguo
+                antiguo.append(self.listaLibros[i])   #lo agrega a la lista de antiguos
         return antiguo
