@@ -12,7 +12,7 @@ ventana.geometry("400x700")
 ventana.resizable(0,0)
 #---------------------------------------------#
 
-#------------------ Boton "agrgar_libros" ------------------#
+#------------------ Boton "agregar_libros" ------------------#
 def a_l(): #agrgar_libros()
     subventana = tk.Toplevel(ventana)
     subventana.title("Agregar Libros")
@@ -91,10 +91,43 @@ def b_l(): #buscar_libros
     subventana.title("Agregar Notas")
     subventana.geometry("400x300")
 
+    def g ():
+        titulo = entrada_n.get()
+        name,autor,genero,año = Bibliotec.buscarLibro(titulo)
+
+        etiqueta_n = tk.Label(subventana, text = "Nombre:", width=10, font = ("Arial", 12))
+        etiqueta_n.place(relx=0.5, rely=0.3, anchor= "center")
+
+        etiqueta_a = tk.Label(subventana, text = "Autor:", width=10, font = ("Arial", 12))
+        etiqueta_a.place(relx=0.5, rely=0.45, anchor= "center")
+
+        etiqueta_g = tk.Label(subventana, text = "Genero:", width=10, font = ("Arial", 12))
+        etiqueta_g.place(relx=0.5, rely=0.6, anchor= "center")
+
+        etiqueta_ñ = tk.Label(subventana, text = "Año:", width=10, font = ("Arial", 12))
+        etiqueta_ñ.place(relx=0.5, rely=0.75, anchor= "center")
+
+
+
+        etiqueta_n = tk.Label(subventana, text = name, width=10)
+        etiqueta_n.place(relx=0.5, rely=0.36, anchor= "center")
+
+        etiqueta_a = tk.Label(subventana, text = autor, width=10)
+        etiqueta_a.place(relx=0.5, rely=0.51, anchor= "center")
+
+        etiqueta_g = tk.Label(subventana, text = genero, width=10)
+        etiqueta_g.place(relx=0.5, rely=0.66, anchor= "center")
+
+        etiqueta_ñ = tk.Label(subventana, text = año, width=10)
+        etiqueta_ñ.place(relx=0.5, rely=0.81, anchor= "center")
+
     etiqueta_n = tk.Label(subventana, text = "Nombre del libro")
-    etiqueta_n.place(relx=0.5, rely=0.2, anchor= "center")
+    etiqueta_n.place(relx=0.5, rely=0.05, anchor= "center")
     entrada_n = tk.Entry(subventana)
-    entrada_n.place(relx=0.5, rely=0.25, anchor= "center")
+    entrada_n.place(relx=0.5, rely=0.1, anchor= "center")
+    boton_n = tk.Button(subventana, text= "Buscar", command= g)
+    boton_n.place(relx= 0.5, rely= 0.2, anchor= "center")
+
 
 boton = tk.Button(ventana, text= ("Buscar Libros"), width= 30, height= 5, command = b_l)
 boton.place(relx=0.5, rely=0.5, anchor= "center")
@@ -115,7 +148,6 @@ def p_l(): #prestar_libros
     def p(): #prestar
         t = entrada_t.get() #titulo
         Bibliotec.prestarPorTitulo(t)
-        print("libro guardado")
 
     b_g = tk.Button(subventana, text= ("Guardar"), width= 8, height= 2, command= p)
     b_g.place(relx=0.5, rely=0.9, anchor= "center")
@@ -149,11 +181,4 @@ boton.place(relx=0.5, rely=0.9, anchor= "center")
 
 #----------------------------------------------------#
 
-#------------------ Resultado ------------------#
-etiqueta_resultado = tk.Label(ventana)
-etiqueta_resultado.place(x=500, y=200)
-#-----------------------------------------------#
-
 ventana.mainloop() #Permite hacer loop infinito
-
-
